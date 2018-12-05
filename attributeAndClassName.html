@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lekcja 1</title>
+
+</head>
+
+<body>
+
+    <div id="root">
+        <h1>{{reverseMessage}}</h1>
+        tekst - reverse
+        <hr>
+        <h1>
+            Wszystkie taski
+        </h1>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+        <h1>
+            Zakończone taski
+        </h1>
+        <ul>
+            <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+        </ul>
+        <h1>
+            Nie-zakończone taski
+        </h1>
+        <ul>
+            <li v-for="task in inCompleteTasks" v-text="task.description"></li>
+        </ul>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#root',
+
+            data: {
+                message: "Witaj swiecie usmiech",
+                tasks: [{
+                        description: "Nauka html",
+                        completed: true
+                    },
+                    {
+                        description: "Nauka css",
+                        completed: true
+                    },
+                    {
+                        description: "Nauka js",
+                        completed: false
+                    },
+                    {
+                        description: "Nauka PHP",
+                        completed: false
+                    },
+                    {
+                        description: "Nauka DB",
+                        completed: false
+                    },
+                ]
+            },
+            methods: {},
+            computed: {
+                reverseMessage() {
+                    return this.message.split('').reverse().join('');
+                },
+                inCompleteTasks() {
+                    return this.tasks.filter(task => !task.completed);
+
+                    // this.tasks.filter(function(task){
+                    //     return !task.completed;
+                    // })
+                }
+            },
+            mounted() {}
+        });
+    </script>
+
+</body>
+
+</html>

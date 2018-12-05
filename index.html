@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lekcja 1</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <input type="text" id="input" v-model="message">
+        <div class="text">{{message}}</div>
+        <div class="text">
+            <ul>
+                <li v-for="name in names" v-text="name"></li>
+            </ul>
+        </div>
+        <p>
+        </p>
+        <input type="text" id="nameInput" v-model="nameNew" @keyup="addName">
+        <button @click="addName" id="button">Button</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#root',
+            // nameAdd: 'sss',
+            data: {
+                message: "Hello Rafał ",
+                nameNew: '',
+                names: ['joanna', 'rudolf', 'rafal']
+            },
+            methods:{
+                addName(){
+                    this.names.push(this.nameNew);
+                    this.nameNew ='';
+                }
+            },
+            mounted() {
+                // document.querySelector('#button').addEventListener('click', () => {
+                //     // let name = document.querySelector('#nameInput');
+                //     // app.names.push(this.name);
+                //     // name.value = '';
+                // });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
